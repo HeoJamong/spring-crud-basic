@@ -49,4 +49,13 @@ public class PostService {
 
         postRepository.delete(post);
     }
+
+    @Transactional
+    public PostDto getPost(Long postId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow();
+
+        post.increaseViewCount();
+        return PostDto.from(post);
+    }
 }
