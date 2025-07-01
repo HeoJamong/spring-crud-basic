@@ -1,6 +1,6 @@
-package com.example.springcrudbasic.post.dto;
+package com.example.springcrudbasic.comment.dto;
 
-import com.example.springcrudbasic.post.entity.Comment;
+import com.example.springcrudbasic.comment.entity.Comment;
 import java.time.LocalDateTime;
 
 public record CommentDto(Long id, String author, String content, LocalDateTime createdAt) {

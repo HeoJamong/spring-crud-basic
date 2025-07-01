@@ -1,4 +1,4 @@
-package com.example.springcrudbasic.post.dto;
+package com.example.springcrudbasic.comment.dto;
 
 public record CommentCreateDto(
         String author,

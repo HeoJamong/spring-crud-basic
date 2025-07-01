@@ -1,10 +1,10 @@
-package com.example.springcrudbasic.post.application;
+package com.example.springcrudbasic.comment.application;
 
-import com.example.springcrudbasic.post.dao.CommentRepository;
+import com.example.springcrudbasic.comment.dao.CommentRepository;
 import com.example.springcrudbasic.post.dao.PostRepository;
-import com.example.springcrudbasic.post.dto.CommentCreateDto;
-import com.example.springcrudbasic.post.dto.CommentDto;
-import com.example.springcrudbasic.post.entity.Comment;
+import com.example.springcrudbasic.comment.dto.CommentCreateDto;
+import com.example.springcrudbasic.comment.dto.CommentDto;
+import com.example.springcrudbasic.comment.entity.Comment;
 import com.example.springcrudbasic.post.entity.Post;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

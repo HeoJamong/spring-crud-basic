@@ -1,7 +1,7 @@
-package com.example.springcrudbasic.post.controller;
+package com.example.springcrudbasic.comment.controller;
 
-import com.example.springcrudbasic.post.application.CommentService;
-import com.example.springcrudbasic.post.dto.CommentCreateDto;
+import com.example.springcrudbasic.comment.application.CommentService;
+import com.example.springcrudbasic.comment.dto.CommentCreateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

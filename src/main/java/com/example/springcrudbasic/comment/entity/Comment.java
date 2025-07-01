@@ -1,5 +1,7 @@
-package com.example.springcrudbasic.post.entity;
+package com.example.springcrudbasic.comment.entity;
 
+import com.example.springcrudbasic.global.entity.BaseEntity;
+import com.example.springcrudbasic.post.entity.Post;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -20,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Comment {
+public class Comment extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,16 +35,9 @@ public class Comment {
     @Column(nullable = false)
     private boolean isDeleted = false;
 
-    private LocalDateTime createdAt;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private Post post;
-
-    @PrePersist
-    public void prePersist() {
-        this.createdAt = LocalDateTime.now();
-    }
 
     public void softDelete() {
         this.isDeleted = true;
