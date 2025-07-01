@@ -33,7 +33,7 @@ public class Comment {
     @Column(nullable = false)
     private boolean isDeleted = false;
 
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
@@ -41,7 +41,7 @@ public class Comment {
 
     @PrePersist
     public void prePersist() {
-        this.createAt = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
     }
 
     public void softDelete() {

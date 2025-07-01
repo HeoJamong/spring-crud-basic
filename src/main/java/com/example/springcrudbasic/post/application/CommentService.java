@@ -3,8 +3,10 @@ package com.example.springcrudbasic.post.application;
 import com.example.springcrudbasic.post.dao.CommentRepository;
 import com.example.springcrudbasic.post.dao.PostRepository;
 import com.example.springcrudbasic.post.dto.CommentCreateDto;
+import com.example.springcrudbasic.post.dto.CommentDto;
 import com.example.springcrudbasic.post.entity.Comment;
 import com.example.springcrudbasic.post.entity.Post;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,5 +30,13 @@ public class CommentService {
                 .build();
 
         commentRepository.save(comment);
+    }
+
+    @Transactional(readOnly = true)
+    public List<CommentDto> getCommentsByPostId(Long postId) {
+        return commentRepository.findByPostIdOrderByCreatedAtDesc(postId)
+                .stream()
+                .map(CommentDto::from)
+                .toList();
     }
 }
