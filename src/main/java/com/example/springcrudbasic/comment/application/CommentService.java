@@ -2,6 +2,7 @@ package com.example.springcrudbasic.comment.application;
 
 import com.example.springcrudbasic.comment.dao.CommentRepository;
 import com.example.springcrudbasic.comment.dto.CommentUpdateDto;
+import com.example.springcrudbasic.global.exception.CommentNotFoundException;
 import com.example.springcrudbasic.post.dao.PostRepository;
 import com.example.springcrudbasic.comment.dto.CommentCreateDto;
 import com.example.springcrudbasic.comment.dto.CommentDto;
@@ -44,7 +45,7 @@ public class CommentService {
     @Transactional
     public void deleteComment(Long commentId) {
         Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 댓글이 존재하지 않습니다."));
+                .orElseThrow(() -> new CommentNotFoundException());
 
         commentRepository.delete(comment);
     }
@@ -52,7 +53,7 @@ public class CommentService {
     @Transactional
     public void updateComment(Long commentId, CommentUpdateDto dto) {
         Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(() -> new RuntimeException("댓글을 찾을 수 없습니다."));
+                .orElseThrow(CommentNotFoundException::new);
         if (comment.isDeleted()) {
             throw new IllegalStateException("삭제된 댓글은 수정할 수 없습니다.");
         }
