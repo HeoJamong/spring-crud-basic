@@ -39,4 +39,12 @@ public class CommentService {
                 .map(CommentDto::from)
                 .toList();
     }
+
+    @Transactional
+    public void deleteComment(Long commentId) {
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 댓글이 존재하지 않습니다."));
+
+        commentRepository.delete(comment);
+    }
 }

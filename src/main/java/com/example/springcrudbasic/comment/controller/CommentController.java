@@ -4,6 +4,7 @@ import com.example.springcrudbasic.comment.application.CommentService;
 import com.example.springcrudbasic.comment.dto.CommentCreateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,5 +31,14 @@ public class CommentController {
     @GetMapping
     public ResponseEntity<?> getComments(@PathVariable Long postId) {
         return ResponseEntity.ok(commentService.getCommentsByPostId(postId));
+    }
+
+    @DeleteMapping("{commentId}")
+    public ResponseEntity<Void> deleteComment(
+            @PathVariable Long postId,
+            @PathVariable Long commentId
+    ) {
+        commentService.deleteComment(commentId);
+        return ResponseEntity.noContent().build();
     }
 }
