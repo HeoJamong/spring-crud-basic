@@ -1,6 +1,7 @@
 package com.example.springcrudbasic.comment.application;
 
 import com.example.springcrudbasic.comment.dao.CommentRepository;
+import com.example.springcrudbasic.comment.dto.CommentUpdateDto;
 import com.example.springcrudbasic.post.dao.PostRepository;
 import com.example.springcrudbasic.comment.dto.CommentCreateDto;
 import com.example.springcrudbasic.comment.dto.CommentDto;
@@ -46,5 +47,16 @@ public class CommentService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 댓글이 존재하지 않습니다."));
 
         commentRepository.delete(comment);
+    }
+
+    @Transactional
+    public void updateComment(Long commentId, CommentUpdateDto dto) {
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new RuntimeException("댓글을 찾을 수 없습니다."));
+        if (comment.isDeleted()) {
+            throw new IllegalStateException("삭제된 댓글은 수정할 수 없습니다.");
+        }
+
+        comment.updateContent(dto.content());
     }
 }
